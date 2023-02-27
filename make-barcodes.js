@@ -149,10 +149,9 @@ isles.forEach(isle => {
     labelNode.appendChild(titleTextNode);
 
     levels.forEach((level, i) => {
-      JsBarcode(barcodeNode, `${loc}-${level}`, barcodeSettings);
+      const label = `${loc}-${level}`;
+      JsBarcode(barcodeNode, label, barcodeSettings);
       const bNode = barcodeNode.getElementsByTagName('g')[0];
-
-
 
       bNode.setAttribute('style', 'shape-rendering:crispEdges');
       bNode.setAttribute('transform', 'translate(-31.5, 3)');
@@ -172,8 +171,8 @@ isles.forEach(isle => {
 
       const gNode = document.createElement('g');
 
-
-      gNode.setAttribute('transform', `translate(${labelWidth / 2}, ${headingHeight + tileHeight * (levels.length - 1 - i) + (tileHeight - 54.2 * yScale) / 2}) scale(${xScale}, ${yScale})`);
+      const scale = Math.min(xScale, yScale);
+      gNode.setAttribute('transform', `translate(${labelWidth / 2}, ${headingHeight + tileHeight * (levels.length - 1 - i) + (tileHeight - 54.2 * scale) / 2}) scale(${scale}, ${scale})`);
       gNode.appendChild(windowNode);
       gNode.appendChild(bNode);
       gNode.appendChild(levelTextNode);
