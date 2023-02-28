@@ -7,9 +7,11 @@ const fs = require('fs');
 const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
 const nameSpace = 'http://www.w3.org/2000/svg';
 const barcodeNode = document.createElementNS(nameSpace, 'svg');
+const binsFile = fs.createWriteStream('out/bins.txt');
 
 //Variables
-const isles = ['A']// ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+const site = 'QLD';
+const isles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
 const sections = [...Array(68).keys()].map(_ => _ + 1);
 const levels = [1, 2, 3, 4, 5, 6];
 const colours = ['acb7b8', 'f15921', '9ad2ae', '15c0f2', 'b18ec1', 'fff101'];
@@ -150,6 +152,7 @@ isles.forEach(isle => {
 
     levels.forEach((level, i) => {
       const label = `${loc}-${level}`;
+      binsFile.write(`INSERT INTO #BIN_IMPORT VALUES('${site}','${label}');\n`);
       JsBarcode(barcodeNode, label, barcodeSettings);
       const bNode = barcodeNode.getElementsByTagName('g')[0];
 
