@@ -22,10 +22,11 @@ const outputBinsFileName = 'out/bins.txt';
 const colours = ['acb7b8', 'f15921', '9ad2ae', '15c0f2', 'b18ec1', 'fff101'];
 const pageWidth = 600; // 297, 600
 const pageHeight = 450; // 420, 450
-const headingRatio = 0.12;
+const headingRatio = 0.08;
 const tickHeight = 2;
 const tickWidth = 0.1;
 const pageAlign = 'left'; // left, right, center
+const onlyVertical = false;
 const barcodeSettings = {
   background: 'none',
   fontSize: 6,
@@ -76,14 +77,6 @@ function initPageNode() {
 }
 
 function addLabelToPage(labelNode, labelHeight, labelWidth) {
-  //pageLabelNumber += 1;
-  //pageNode.appendChild(labelNode);
-  //if (labelWidth * (pageLabelNumber + 1) > pageWidth) {
-  //  saveToPdf();
-  //  saveToSvg()
-  //  pageNode = initPageNode();
-  //}
-
   const fitX = Math.floor(pageWidth / labelWidth);
   const extrasX = Math.floor((pageHeight - labelHeight) / labelWidth);
   const extrasY = Math.floor(pageWidth / labelHeight);
@@ -92,7 +85,7 @@ function addLabelToPage(labelNode, labelHeight, labelWidth) {
   if (pageLabelNumber < fitX) {
     labelNode.setAttribute('transform', `translate(${leftMargin + pageLabelNumber * labelWidth}, ${pageHeight - labelHeight})`);
     pageNode.appendChild(labelNode);
-  } else if (pageLabelNumber < totalLabels) {
+  } else if (pageLabelNumber < totalLabels && !onlyVertical) {
     const extra = extraLabels - (totalLabels - pageLabelNumber);
     const extra2 = extraLabels - (totalLabels - pageLabelNumber);
     const moveX = labelWidth * (extra % extrasX) + labelWidth;
@@ -110,7 +103,7 @@ function addLabelToPage(labelNode, labelHeight, labelWidth) {
   labelNumber += 1;
 }
 
-isles2.forEach((isle, i) => {
+isles2.forEach((isle) => {
   const headingBlockHeight = headingRatio * pageHeight;
   const topHeadingHeight = headingBlockHeight;
   const bottomHeadingHeight = 2 * headingBlockHeight;
