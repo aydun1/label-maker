@@ -10,6 +10,7 @@ const isles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 
 const pageWidth = 297//297//600;
 const pageHeight = 420//420//450;
 const fontSize = 326;
+const copies = 2;
 
 //Derived stuff
 const pdfDoc = new PDFDocument({size: [pageWidth * 0.0393701 * 72, pageHeight * 0.0393701 * 72], info: {Title: 'GCP isle labels', Author: 'Aidan O\'Brien'}});
@@ -40,15 +41,11 @@ pdfDoc.pipe(pdfStream);
 isles.forEach((isle, i) => {
   titleTextNode.textContent = isle;
   const svgText = new XMLSerializer().serializeToString(pageNode);
-  if (i > 0) pdfDoc.addPage();
+  for(var i = 0; i <= copies; i++){
+    if (i > 0) pdfDoc.addPage();
+    SVGtoPDF(pdfDoc, svgText, 0, 0);
+  }
 
-  SVGtoPDF(pdfDoc, svgText, 0, 0);
-  pdfDoc.addPage();
-  SVGtoPDF(pdfDoc, svgText, 0, 0);
-  pdfDoc.addPage();
-  SVGtoPDF(pdfDoc, svgText, 0, 0);
-  pdfDoc.addPage();
-  SVGtoPDF(pdfDoc, svgText, 0, 0);
 })
 
 pdfDoc.end();
