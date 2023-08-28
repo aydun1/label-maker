@@ -6,8 +6,9 @@ const fs = require('fs');
 const nameSpace = 'http://www.w3.org/2000/svg';
 const document = new DOMImplementation().createDocument('http://www.w3.org/1999/xhtml', 'html', null);
 
-//Variables
-const isles2 = [
+
+// vvv configuration options vvv
+const isles = [
   {isle: 'A', levels: [1, 2, 3, 4, 5, 6], sections: 24, arrows: 'l'},
   {isle: 'B', levels: [1, 2, 3], sections: 21, arrows: 'r'},
   {isle: 'C', levels: [1, 2, 3], sections: 21, arrows: 'l'},
@@ -17,16 +18,16 @@ const isles2 = [
   {isle: 'G', levels: [1, 2, 3, 4], sections: 32, sides: 2},
   {isle: 'H', levels: [1, 2, 3, 4], sections: 76, arrows: 'rllrrllrrl-rllrrllrrllrrllrrllrrllrr-llrrl-rllrr-llrrl-rllrr-llrrl-rllrr-llr'}
 ];
-const outputPdfFileName = 'out/barcodes.pdf';
-const outputBinsFileName = 'out/bins.txt';
-const colours = ['acb7b8', 'f15921', '9ad2ae', '15c0f2', 'b18ec1', 'fff101'];
-const pageWidth = 600; // 297, 600
-const pageHeight = 450; // 420, 450
-const headingRatio = 0.08;
-const tickHeight = 2;
-const tickWidth = 0.1;
-const pageAlign = 'left'; // left, right, center
-const onlyVertical = false;
+const outputPdfFileName = 'out/barcodes.pdf'; // The output PDF file for the labels
+const outputBinsFileName = 'out/bins.txt'; // The output TXT file for the bin names
+const colours = ['acb7b8', 'f15921', '9ad2ae', '15c0f2', 'b18ec1', 'fff101']; // Colours for each level
+const pageWidth = 600; // The page width (297, 600)
+const pageHeight = 450; // The page height (420, 450)
+const headingRatio = 0.08; // The heading height, defined as a ratio to page height.
+const tickHeight = 2; // Height of the 'tick' - a visual marker to assist in cutting once printed
+const tickWidth = 0.1; // Width of the tick
+const pageAlign = 'left'; // Horizontal alignment of the labels on the page (left, right, center)
+const onlyVertical = false; // Set to true to prevent horizontal labels being added to the page to fill in any gaps
 const barcodeSettings = {
   background: 'none',
   fontSize: 6,
@@ -36,6 +37,7 @@ const barcodeSettings = {
   marginBotton: 3, marginLeft: 5, marginRight: 5, marginTop: 3,
   xmlDocument: document
 };
+// ^^^ configuration options ^^^
 
 // Derived values
 const pdfStream = fs.createWriteStream(outputPdfFileName);
@@ -103,7 +105,7 @@ function addLabelToPage(labelNode, labelHeight, labelWidth) {
   labelNumber += 1;
 }
 
-isles2.forEach((isle) => {
+isles.forEach((isle) => {
   const headingBlockHeight = headingRatio * pageHeight;
   const topHeadingHeight = headingBlockHeight;
   const bottomHeadingHeight = 2 * headingBlockHeight;
