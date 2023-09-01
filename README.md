@@ -20,7 +20,7 @@ Edit the file to adjust the configuration options as required.
 This is a list of isle objects. Each object should have the following properties:
 
 - `isle` (string): The isle name
-- `levels` (list of strings): A list of levels
+- `levels` (string[]): A list of levels
 - `sections` (number): How many sections/bins across the isle
 - `sides` (number: 1 or 2): The number of sides the isle has. This controls the direction of the arrows.  
             If the result isn't what you expect, use `arrows` instead
@@ -35,11 +35,11 @@ This is a list of isle objects. Each object should have the following properties
 
 - `outputPdfFileName` (string): The output PDF file for the labels
 - `outputBinsFileName` (string): The output TXT file for the bin names
-- `colours` (list of strings): A list of hexadecimal colours for each level
+- `colours` (strings[]): A list of hexadecimal colours for each level
 - `pageWidth` (number): The page width
 - `pageHeight` (number): The page height
 - `headingRatio` (number): The heading height, defined as a ratio to page height
 - `tickHeight` (number): Height of the 'tick' - a visual marker to assist in cutting once printed
 - `tickWidth` (number): Width of the tick
-- `pageAlign` (string: left, right, center): Horizontal alignment of the labels on the page
-- `onlyVertical` (boolean: true, false): Set to true to prevent horizontal labels being added to the page to fill in any gaps
+- `pageAlign` (string: `left`, `right` or `center`): Horizontal alignment of the labels on the page
+- `onlyVertical` (boolean): Set to true to prevent horizontal labels being added to the page to fill in any gaps
