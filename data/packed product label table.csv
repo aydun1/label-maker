@@ -1,0 +1,17 @@
+﻿ItemNumber,Line1,Line2,Qty1,Qty2,Note
+ETL,Esi-Tie Tree Tie,Large - 310mm,200/pack,"1,400/ctn (7 packs)","average qty, packed by weight"
+ETM,Esi-Tie Tree Tie,Medium - 170mm,500/pack,"3,000/ctn (6 packs)","average qty, packed by weight"
+ETS,Esi-Tie Tree Tie,Small - 120mm,500/pack,"5,000/ctn (10 packs)","average qty, packed by weight"
+SIMCLIPRING13,Clip Ring,13mm,"1,000/pack","60,000/ctn (60 packs)","average qty, packed by weight"
+SIMCLIPRING16,Clip Ring,16mm,"1,000/pack","40,000/ctn (40 packs)","average qty, packed by weight"
+SIMCLIPRING20,Clip Ring,20mm,"1,000/pack","24,000/ctn (24 packs)","average qty, packed by weight"
+SIMCLIPRING25,Clip Ring,25mm,"1,000/pack","15,000/ctn (15 packs)","average qty, packed by weight"
+SIMEX16,Simex Clip,16mm,"1,000/pack","50,000/ctn (50 packs)","average qty, packed by weight"
+SIMEX20,Simex Clip,20mm,"1,000/pack","25,000/ctn (25 packs)","average qty, packed by weight"
+SIMEX25,Simex Clip,25mm,"1,000/pack","10,000/ctn (10 packs)","average qty, packed by weight"
+TLTOTRING,Coir Pole Ring,50mm,100/pack,"2,500/ctn (25 packs)","average qty, packed by weight"
+WMST150,Weedmat Staples,150mm,100/pack,,
+WMST200,Weedmat Staples,200mm,100/pack,,
+WMP15,Weedmat Peg,15cm,100/pack,,
+WMP19,Weedmat Peg,19cm,100/pack,,
+WMPWASHER,Weedmat Peg Washer,,100/pack,,"average qty, packed by weight"
