@@ -10,14 +10,14 @@ Run `npm install` to install
 ## Usage
 Run using `node file-name.js`
 
-## Configuration
-make-racking-labels.js
-This makes labels that can be used to label a warehouse.
-Edit the file to adjust the configuration options as required. 
+## Rack labels
+`node make-racking-labels.js`  
+This makes barcoded labels that can be used to label bins in a warehouse.  
+Edit the file to adjust the configuration options as required.
 
-
-### Isles
-This is a list of isle objects. Each object should have the following properties:
+### Configuration
+#### Isles
+This is a list of isle. Each isle should have the following properties:
 
 - `isle` (string): The isle name
 - `levels` (string[]): A list of levels
@@ -31,15 +31,27 @@ This is a list of isle objects. Each object should have the following properties
         I.e. 'l' will only use left arrows. '-' will use no arrows. 'rllr' will go right, left, left, right (and repeat)  
         Setting sides to two is equivalent to arrows = 'rllr' and setting sides to 1 is equivalent to arrows = 'rl'  
 
-### Other options
+#### Other options
 
 - `outputPdfFileName` (string): The output PDF file for the labels
 - `outputBinsFileName` (string): The output TXT file for the bin names
-- `colours` (strings[]): A list of hexadecimal colours for each level
-- `pageWidth` (number): The page width
-- `pageHeight` (number): The page height
+- `colours` (string[]): A list of hexadecimal colours for each level
+- `pageWidth` (number): The page width (mm)
+- `pageHeight` (number): The page height (mm)
 - `headingRatio` (number): The heading height, defined as a ratio to page height
-- `tickHeight` (number): Height of the 'tick' - a visual marker to assist in cutting once printed
-- `tickWidth` (number): Width of the tick
+- `tickHeight` (number): Height of the 'tick' - a visual marker to assist in cutting once printed (px)
+- `tickWidth` (number): Width of the tick (px)
 - `pageAlign` (string: `left`, `right` or `center`): Horizontal alignment of the labels on the page
 - `onlyVertical` (boolean): Set to true to prevent horizontal labels being added to the page to fill in any gaps
+
+## Isle labels
+`node make-corflute.js`  
+This makes giant letters for attaching to the ends of the isles.
+
+### Configuration
+#### Options
+- `isles` (string[]): A list of isle names
+- `pageWidth` (number): The page width (mm)
+- `pageHeight` (number): The page height (mm)
+- `fontSize` (number): The font size (px)
+- `copies` (number): The number of copies to print of each isle
