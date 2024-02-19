@@ -8,7 +8,7 @@ const document = new DOMImplementation().createDocument('http://www.w3.org/1999/
 
 
 // vvv configuration options vvv
-const isles = [
+const isles_nsw = [
   {isle: 'A', levels: [1, 2], sections: 22, arrows: 'l'},
   {isle: 'B', levels: [1, 2, 3], sections: 19, arrows: 'r'},
   {isle: 'C', levels: [1, 2, 3], sections: 19, arrows: 'l'},
@@ -18,16 +18,38 @@ const isles = [
   {isle: 'G', levels: [1, 2, 3, 4], sections: 62, sides: 2},
   {isle: 'H', levels: [1, 2, 3, 4], sections: 76, arrows: 'rllrrllrrl-rllrrllrrllrrllrrllrrllrr-llrrl-rllrr-llrrl-rllrr-llrrl-rllrr-llr'}
 ];
+
+const isles_wa = [
+  {isle: 'B', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 1, numbers: 'odd', side: 'left'},
+  {isle: 'B', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  {isle: 'C', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  {isle: 'D', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  {isle: 'E', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  {isle: 'F', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 1, numbers: 'odd', side: 'right'},
+  {isle: 'F', levels: [1, 2, 3, 4, 5], sections: 68, sides: 1, numbers: 'even', side: 'left'},
+  {isle: 'G', levels: [1, 2, 3, 4], sections: 68, sides: 2},
+  {isle: 'H', levels: [1, 2, 3, 4], sections: 68, sides: 1, numbers: 'odd', side: 'right'},
+  {isle: 'H', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 1, numbers: 'even', side: 'left'}
+];
+
+const isles_hea = [
+  {isle: 'A', levels: [1, 2, 3], sections: 33, sides: 1, arrows: 'l'},
+  {isle: 'B', levels: [1, 2, 3], sections: 36, sides: 1, arrows: 'r'},
+  {isle: 'B', levels: [1], sections: 1, sides: 1, arrows: 'r', startAt: 37},
+  {isle: 'C', levels: [1, 2, 3, 4, 5, 6], sections: 45, sides: 1, arrows: 'l'},
+  {isle: 'D', levels: [1, 2, 3, 4, 5, 6], sections: 47, sides: 1, arrows: 'r'}
+];
+
 const outputPdfFileName = 'out/barcodes.pdf';
 const outputBinsFileName = 'out/bins.txt';
-const colours = ['b18ec1', 'fff101', 'acb7b8', 'f15921', '9ad2ae', '15c0f2'];
+const colours = ['fff101', 'b18ec1', '15c0f2', '9ad2ae', 'f15921', 'acb7b8'];
 const pageWidth = 600;
 const pageHeight = 450;
 const headingRatio = 0.08;
 const tickHeight = 2;
 const tickWidth = 0.1;
 const pageAlign = 'left';
-const onlyVertical = false;
+const onlyVertical = true;
 const barcodeSettings = {
   background: 'none',
   fontSize: 6,
@@ -57,6 +79,7 @@ let pageNumber = 0;
 let labelNumber = 0;
 let pageLabelNumber = 0;
 let pageNode = initPageNode();
+let bins = [];
 
 function saveToSvg() {
   const svgText = new XMLSerializer().serializeToString(pageNode);
@@ -108,22 +131,23 @@ function addLabelToPage(labelNode, labelHeight, labelWidth) {
   labelNumber += 1;
 }
 
-isles.forEach((isle) => {
+isles_hea.forEach((isle) => {
   const headingBlockHeight = headingRatio * pageHeight;
   const topHeadingHeight = headingBlockHeight;
   const bottomHeadingHeight = 2 * headingBlockHeight;
-  const tileHeight = Math.min((pageHeight - topHeadingHeight - bottomHeadingHeight) / isle['levels'].length, 60);
+  const tileHeight = Math.min((pageHeight - topHeadingHeight - bottomHeadingHeight) / isle['levels'].length, 57);
   const blackBoxHeight = headingRatio * pageHeight;
   const labelHeight = tileHeight * isle['levels'].length + headingBlockHeight * 2 + blackBoxHeight;
   const labelWidth = 81;
   const yScale = tileHeight / 60;
   const xScale = labelWidth / 81;
+  const startAt = isle['startAt'] || 1;
 
   let odd = 1;
   let even = 2;
-  const sectionArr = [...Array(isle['sections']).keys()].map(_ => _ + 1);
-
-  sectionArr.forEach(section => {
+  const sectionArr = [...Array(isle['sections']).keys()].map(_ => _ + startAt).filter(_ => isle.numbers ? isle.numbers === 'even' ? _ % 2 === 0 : _ % 2 !== 0  : _);
+  console.log(sectionArr)
+  sectionArr.forEach((section, index) => {
     const loc = `${isle['isle']}${section.toLocaleString('en-AU', {minimumIntegerDigits: 2, useGrouping:false})}`;
     const labelNode = document.createElement('g');
 
@@ -176,7 +200,7 @@ isles.forEach((isle) => {
       };
       switch(isle['sides']) {
         case 1:
-          return (section % 2 === 0 ? leftArrow.cloneNode() : rightArrow.cloneNode());
+          return (isle.side === 'left' && index % 2 === 0 || isle.side === 'right' && index % 2 !== 0? leftArrow.cloneNode() : rightArrow.cloneNode());
         case 2:
           const arrow = (section % 2 === 0 && even !== section || odd === section ? rightArrow : leftArrow);
           if (section === even) even += 4;
@@ -209,8 +233,7 @@ isles.forEach((isle) => {
     
     isle['levels'].forEach((level, i) => {
       const label = `${loc}-${level}`;
-      //binsFile.write(`INSERT INTO #BIN_IMPORT VALUES('${site}','${label}');\n`);
-      binsFile.write(`${label}\r\n`);
+      bins.push(label);
       JsBarcode(barcodeNode, label, barcodeSettings);
       const bNode = barcodeNode.getElementsByTagName('g')[0];
 
@@ -218,7 +241,7 @@ isles.forEach((isle) => {
       bNode.setAttribute('transform', 'translate(-31.5, 3)');
 
       const tileNode = document.createElement('rect');
-      tileNode.setAttribute('style', `fill:#${colours[colours.length - (i + 1)]}`);
+      tileNode.setAttribute('style', `fill:#${colours[i]}`);
       tileNode.setAttribute('width', `${labelWidth}px`);
       tileNode.setAttribute('height', `${tileHeight}px`);
       tileNode.setAttribute('y', `${topHeadingHeight + tileHeight * (isle['levels'].length - 1 - i)}px`);
@@ -255,4 +278,8 @@ doc.pipe(pdfStream);
 
 if (pageLabelNumber > 0) saveToPdf();
 doc.end();
+
+
+binsFile.write([...new Set(bins)].sort().join('\r\n'));
+
 console.log(`Created ${labelNumber} labels on ${pageNumber} pages`);
