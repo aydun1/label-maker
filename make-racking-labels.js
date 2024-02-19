@@ -35,9 +35,21 @@ const isles_wa = [
 const isles_hea = [
   {isle: 'A', levels: [1, 2, 3], sections: 33, sides: 1, arrows: 'l'},
   {isle: 'B', levels: [1, 2, 3], sections: 36, sides: 1, arrows: 'r'},
-  {isle: 'B', levels: [1], sections: 1, sides: 1, arrows: 'r', startAt: 37},
-  {isle: 'C', levels: [1, 2, 3, 4, 5, 6], sections: 45, sides: 1, arrows: 'l'},
-  {isle: 'D', levels: [1, 2, 3, 4, 5, 6], sections: 47, sides: 1, arrows: 'r'}
+  {isle: 'B', levels: [1], sections: 2, sides: 1, arrows: 'r', startAt: 37},
+  {isle: 'B', levels: [1, 2, 3, 4], sections: 4, sides: 1, arrows: 'r', startAt: 39},
+  {isle: 'B', levels: [1, 2, 3], sections: 3, sides: 1, arrows: 'r', startAt: 43},
+
+
+  {isle: 'C', levels: [1, 2, 3, 4], sections: 16, sides: 1, arrows: 'l'},
+  {isle: 'C', levels: [1, 2, 3], sections: 20, sides: 1, arrows: 'l', startAt: 17},
+  {isle: 'C', levels: [1], sections: 2, sides: 1, arrows: 'l', startAt: 37},
+  {isle: 'C', levels: [1, 2, 3], sections: 7, sides: 1, arrows: 'l', startAt: 39},
+
+
+  {isle: 'D', levels: [1, 2, 3], sections: 28, sides: 1, arrows: 'r'},
+  {isle: 'D', levels: [1], sections: 1, sides: 1, arrows: 'r', startAt: 29},
+  {isle: 'D', levels: [1, 2, 3], sections: 18, sides: 1, arrows: 'r', startAt: 30},
+
 ];
 
 const outputPdfFileName = 'out/barcodes.pdf';
