@@ -38,17 +38,30 @@ const isles_hea = [
   {isle: 'B', levels: [1], sections: 2, sides: 1, arrows: 'r', startAt: 37},
   {isle: 'B', levels: [1, 2, 3, 4], sections: 4, sides: 1, arrows: 'r', startAt: 39},
   {isle: 'B', levels: [1, 2, 3], sections: 3, sides: 1, arrows: 'r', startAt: 43},
-
-
   {isle: 'C', levels: [1, 2, 3, 4], sections: 16, sides: 1, arrows: 'l'},
   {isle: 'C', levels: [1, 2, 3], sections: 20, sides: 1, arrows: 'l', startAt: 17},
   {isle: 'C', levels: [1], sections: 2, sides: 1, arrows: 'l', startAt: 37},
   {isle: 'C', levels: [1, 2, 3], sections: 7, sides: 1, arrows: 'l', startAt: 39},
-
-
   {isle: 'D', levels: [1, 2, 3], sections: 28, sides: 1, arrows: 'r'},
   {isle: 'D', levels: [1], sections: 1, sides: 1, arrows: 'r', startAt: 29},
   {isle: 'D', levels: [1, 2, 3], sections: 18, sides: 1, arrows: 'r', startAt: 30},
+  {isle: 'E', levels: [1, 2, 3], sections: 1, sides: 1, arrows: 'r'},
+  {isle: 'E', levels: [1, 2, 3], sections: 1, sides: 1, arrows: 'l'},
+  {isle: 'E', levels: [1], sections: 1, sides: 1, arrows: 'l', startAt: 2},
+  {isle: 'E', levels: [1], sections: 1, sides: 1, arrows: 'r', startAt: 2},
+];
+
+const isles_qld = [
+  {isle: 'A', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2, numbers: 'odd'},
+  {isle: 'B', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  {isle: 'C', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  {isle: 'D', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  {isle: 'E', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  {isle: 'F', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  {isle: 'G', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  {isle: 'H', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  {isle: 'I', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  {isle: 'J', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2, numbers: 'even'}
 
 ];
 

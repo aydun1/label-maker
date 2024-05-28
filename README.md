@@ -22,7 +22,7 @@ This is a list of isle. Each isle should have the following properties:
 - `isle` (string): The isle name
 - `levels` (string[]): A list of levels
 - `sections` (number): How many sections/bins across the isle
-- `sides` (number: 1 or 2): The number of sides the isle has. This controls the direction of the arrows.  
+- `sides` (number: 1 or 2): The number of sides each face of the isle has. This controls the direction of the arrows.  
             If the result isn't what you expect, use `arrows` instead
 - `arrows` (string of `l`s, `r`s and/or `-`s):
         For the first section/bin, the arrow will match the first letter.  
