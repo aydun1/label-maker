@@ -52,19 +52,22 @@ const isles_hea = [
 ];
 
 const isles_qld = [
-  {isle: 'A', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2, numbers: 'odd'},
-  {isle: 'B', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
-  {isle: 'C', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
-  {isle: 'D', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
-  {isle: 'E', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
-  {isle: 'F', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
-  {isle: 'G', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
-  {isle: 'H', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
-  {isle: 'I', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
-  {isle: 'J', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2, numbers: 'even'}
-
+  //{isle: 'A', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2, numbers: 'odd'},
+  //{isle: 'B', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  //{isle: 'C', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  //{isle: 'D', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  //{isle: 'E', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  //{isle: 'F', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  //{isle: 'G', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  //{isle: 'H', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  //{isle: 'I', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2},
+  //{isle: 'J', levels: [1, 2, 3, 4, 5, 6], sections: 68, sides: 2, numbers: 'even'},
+  {isle: 'J', levels: [1, 2, 3, 4, 5, 6], sections: 36, sides: 2, numbers: 'odd', startAt: 5},
+  {isle: 'K', levels: [1, 2, 3, 4, 5, 6], sections: 36, sides: 2, startAt: 5},
+  {isle: 'L', levels: [1, 2, 3, 4, 5, 6], sections: 36, sides: 2, startAt: 5, numbers: 'even'},
 ];
 
+const active_label = isles_qld;
 const outputPdfFileName = 'out/barcodes.pdf';
 const outputBinsFileName = 'out/bins.txt';
 const colours = ['fff101', 'b18ec1', '15c0f2', '9ad2ae', 'f15921', 'acb7b8'];
@@ -156,7 +159,7 @@ function addLabelToPage(labelNode, labelHeight, labelWidth) {
   labelNumber += 1;
 }
 
-isles_hea.forEach((isle) => {
+active_label.forEach((isle) => {
   const headingBlockHeight = headingRatio * pageHeight;
   const topHeadingHeight = headingBlockHeight;
   const bottomHeadingHeight = 2 * headingBlockHeight;
